@@ -1,0 +1,70 @@
+# UKG Pro (UltiPro) Community Connector Spec
+# This file defines the specification for the connector including
+# connection parameters and allowlist options.
+
+# ============================================================================
+# Connection Parameters
+# These are provided when creating the Unity Catalog connection.
+# ============================================================================
+display_name: UKG Pro
+
+connection:
+  parameters:
+    - name: service_host
+      type: string
+      required: true
+      description: >
+        Your UKG Pro service hostname (e.g., service5.ultipro.com).
+        Found in UKG Pro admin console under System Configuration >
+        Security > Web Services.
+
+    - name: username
+      type: string
+      required: true
+      description: >
+        Service account username created in UKG Pro under
+        System Configuration > Security > Service Account Administration.
+
+    - name: password
+      type: string
+      required: true
+      secret: true
+      description: >
+        Service account password (system-generated at account creation).
+
+    - name: customer_api_key
+      type: string
+      required: true
+      secret: true
+      description: >
+        5-character customer API key, found on the Service Account
+        Administration page. Sent as the US-Customer-Api-Key header.
+
+    - name: client_id
+      type: string
+      required: false
+      description: >
+        OAuth 2.0 client ID for recruiting and onboarding APIs.
+        Required only if ingesting recruiting or onboarding tables.
+
+    - name: client_secret
+      type: string
+      required: false
+      secret: true
+      description: >
+        OAuth 2.0 client secret for recruiting and onboarding APIs.
+        Required only if ingesting recruiting or onboarding tables.
+
+    - name: tenant_alias
+      type: string
+      required: false
+      description: >
+        Tenant alias for recruiting and onboarding URL paths.
+        Required only if ingesting recruiting or onboarding tables.
+
+# ============================================================================
+# External Options Allowlist
+# These table-specific options must be included in the externalOptionsAllowList
+# parameter of the UC connection to allow them to be passed through.
+# ============================================================================
+external_options_allowlist: "max_records_per_batch,per_page"

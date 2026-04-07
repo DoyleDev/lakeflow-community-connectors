@@ -1,0 +1,11 @@
+{
+  "person_details": {
+    "max_records_per_batch": "1000"
+  },
+  "employment_details": {
+    "max_records_per_batch": "1000"
+  },
+  "applications": {
+    "max_records_per_batch": "100"
+  }
+}
